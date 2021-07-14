@@ -1,0 +1,48 @@
+<div class="container">
+    <div *ngIf='selectedOutfit' class="outfit_detail">
+
+        <div class="outfit_detail-image-container">
+            <img [src]=[selectedOutfit.imageUrl] alt="">
+        </div>
+        <div class="outfit_detail-content">
+                <!-- <div> -->
+                    <h1>{{selectedOutfit.title}}</h1>
+                    <p>{{selectedOutfit.description}}</p>
+                    <div class="price">
+                        <p>{{selectedOutfit.price}}</p>
+                        <img src="../../../assets/images/rupeesIcon.png" alt="">
+                    </div>
+                    <div class="stars">
+                        <img src="../../../assets/images/starIcon.png" alt="" *ngFor='let star of stars'>
+                    </div>
+                    <p>{{selectedOutfit.category}}</p>
+                    <p>{{selectedOutfit.stockCount}}   Items Left!</p>
+                    <ul class="outfit_detail-instructions">
+                        <h2 *ngIf='selectedOutfit.instructions.length > 0'>Instructions : </h2>
+                        <li class="outfit_detail-instruction" *ngFor='let instruction of selectedOutfit.instructions'>
+                            <p>{{instruction[0]}} : {{instruction[1]}}</p>
+                        </li>
+                    </ul>
+                <!-- </div> -->
+        </div>
+        <div *ngIf='(canEdit && fromSeller); then sellerActions else customerActions' ></div>
+    </div>
+    
+        <ng-template #customerActions class="action_buttons">
+            <div class="action_buttons">
+                <!-- (click)='onBuyNow()' -->
+                <button type="button" (click)="onBuyNow()" *ngIf='stockCount > 0' class="button">Buy Now!</button>
+                <button type="button" (click)='onAddTocart()' class="button">Add To Cart</button>
+            </div>
+        </ng-template>
+    
+        <ng-template #sellerActions class="action_buttons">
+            <div class="action_buttons">
+                <button type="button" (click)='onEdit()' class="button edit-button">Edit</button>
+                <button type="button" (click)='onDelete()' class="button delete-button">Delete!</button>
+            </div>
+        </ng-template>
+
+</div>
+
+<!-- <img [src]=[selectedOutfit.imageUrl] alt=""> -->

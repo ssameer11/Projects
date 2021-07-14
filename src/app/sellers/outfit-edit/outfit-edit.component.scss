@@ -1,0 +1,185 @@
+@use '../../../styles/mixins' as *;
+
+.page-container {
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 80vh;
+    @include flex-column-center-center();
+    overflow: hidden;
+    
+
+    form {
+        min-width: 70%;
+        max-width: 70%;
+        @include flex-column-center-center(2rem);
+
+        .label_input {
+            min-width: 70%;
+            max-width: 70%;
+            @include flex-row-center-center(4rem);
+            justify-content: flex-start;
+            label {
+                @include width-height(10%,null);
+            }
+            input {
+                @include input;
+                @include width-height(60%,null);
+            }
+        }
+
+        .preview_image-container {
+            @include width-height(50%,null);
+            // height: 10rem;
+
+            .preview_image {
+                @include width-height();
+            }
+        }
+    }
+
+    .description-label_text_area {
+        // min-width: 100%;
+        justify-content: flex-start;
+        textarea {
+            @include width-height(40%,null);
+            padding: 0.1rem 0.6rem;
+        }
+    }
+
+    #rating {
+        margin-right: auto;
+        max-width: 2rem;
+        min-width: 2rem;
+    }
+
+    #category {
+        @include width-height(30%,2rem);
+    }
+
+    .instructions_label {
+        @include flex-webkit();
+        min-width: 100%;
+
+        p {
+            margin: 0;
+        }
+
+        .instruction_name-label {
+            margin-left: 10%;
+        }
+
+        .instruction_value-label {
+            margin-left: 35%;
+        }
+        
+        
+    }
+
+
+    .instruction_controlls-container {
+        min-width: 100%;
+        @include flex-column-center-center(1.5rem);
+        align-items: flex-start;
+
+        .instruction_controlls {
+            min-width: 100%;
+            max-width: 100%;
+            @include width-height(null,2rem);
+            @include flex-row-center-center(3%);
+            justify-content: flex-start;
+
+            input {
+                @include input;
+                min-width: 45%;
+                // height: 100%;
+            }
+            button {
+                min-height: 100%;
+                max-height: 100%;
+                min-width: 2.5rem;
+                padding: 5px;
+                border-radius: 0;
+                background: rgb(245, 116, 116);
+            }
+        }
+    }
+}
+
+.button {
+    padding: 10px;
+    @include width-height(null,2.5rem);
+    font-size: 1.1rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+@media (max-width: 420px) {
+    .page-container {
+        form {
+            min-width: 100%;
+            max-width: 100%;
+            .label_input {
+                flex-direction: column;
+                gap: 0;
+                min-width: 100%;
+                max-width: 100%;
+                input {
+                    min-width: 70%;
+                }
+
+                label {
+                    @include width-height(auto,null);
+                    margin-right: auto;
+                    margin-left: 15%;
+                    margin-bottom: 0.5rem;
+                    font-weight: bold;
+                }
+            }
+            #rating {
+                margin: auto;
+            }
+    
+            .description-label_text_area {
+                textarea {
+                    @include width-height(50%,null);
+                }
+            }
+
+            .instruction_controlls-container {
+                // height: auto;
+                .instruction_controlls {
+                    flex-direction: column;
+                    gap: 1rem;
+                    @include width-height(null,auto);
+
+                    .instruction_name-label-input,
+                    .instruction_value-label-input {
+                        @include flex-webkit();
+                        flex-direction: column;
+
+                        p {
+                            margin: 0;
+                            margin-left: 15%;
+                            margin-right: auto;
+                            font-weight: bold;
+                        }
+                        input {
+                            @include width-height(70%,null);
+                        }
+                    }
+
+                    button {
+                        display: block;
+                        @include width-height(2rem,null);
+                        min-height: 2rem;
+                        background: rgb(245, 116, 116);
+                    }
+
+                }
+
+            }
+        }
+
+    }
+}

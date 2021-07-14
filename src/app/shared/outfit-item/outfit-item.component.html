@@ -1,0 +1,21 @@
+<!-- <h1>THIS IS THE OUTFIT ITEM COMPONENT</h1> -->
+<!-- class="outfit_item" -->
+<div class="page-container">
+    <div (click)="onClick()" [ngClass]="{'outfit_item': true,'outfit_item-animate': animate}">
+        <div class="title">
+            <h1 class="outfit_item-title">{{outfit.title}}</h1>
+        </div>
+        <div class="outfit_item-image">
+            <img [src]=[outfit.imageUrl] alt="">
+        </div>
+        <div class="stars_and_price">
+            <div class="price">
+                <p>{{outfit.price}}</p>
+                <img src="../../../assets/images/rupeesIcon.png" alt="">
+            </div>
+            <div class="stars">
+                <img src="../../../assets/images/starIcon.png" alt="*" *ngFor='let s of stars'>
+            </div>
+        </div>
+    </div>
+</div>

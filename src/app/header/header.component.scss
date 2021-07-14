@@ -1,0 +1,223 @@
+@use '../../styles/mixins' as *;
+
+nav {
+    @include flex-row-center-center();
+    justify-content: space-between;
+    background: rgb(160, 244, 255);
+    max-width: 100%;
+    @include width-height(null);
+    ul {
+        @include width-height(50%);
+        @include flex-row-center-center();
+        justify-content: space-between;
+        list-style: none;
+
+        a {
+            text-decoration: none;
+        }
+        li {
+            @include width-height(null);
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
+            @include flex-column-center-center();
+            align-items: flex-start;
+            
+        }
+    }
+
+    .filters {
+        @include width-height(42%,50%);
+        margin: auto 4%;
+        @include flex-row-center-center();
+        justify-content: flex-start;
+
+        .search_category {
+            @include width-height(20%);
+        }
+
+        .search_input {
+            // @include input;
+            @include width-height(80%);
+            background: rgb(243, 195, 189,0.2);
+            // font-size: 1rem;
+        }
+
+        .search_category:focus,
+        .search_input:focus {
+            outline: none;
+            border: 3px solid blue;
+            // background: black;
+        }
+    }
+}
+
+
+.icon_image-container {
+    @include width-height(3rem,60%);
+    padding: 20%;
+    border-radius: 50%;
+    cursor: pointer;
+    img {
+        @include width-height();
+    }
+
+    &:hover {
+        img {
+            animation: wiggle 400ms 4 ease-out;
+        }
+        // animation: wiggle 400ms 2s 8 ease-out forwards;
+    }
+}
+
+.header-active {
+    background: rgb(212, 241, 249,0.8);
+}
+
+
+
+// MOBILE STYLES 
+.mobile-nav {
+    @include flex-column-center-center();
+    justify-content: flex-start;
+   @include width-height();
+
+    .filters {
+        min-width: 90%;
+        max-width: 90%;
+        min-height: 40%;
+
+        @include flex-row-center-center();
+
+
+        select {
+            @include width-height(null,70%);
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+        input {
+            @include width-height(null,70%);
+            font-size: 1.1rem;
+            // padding: 0.1rem;
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+        }
+    }
+
+    .mobile-nave_list {
+        max-width: 35%;
+        margin: 0;
+        margin-right: auto;
+        justify-content: space-between;
+        padding-left: 0;
+        max-height: 50%;
+
+        li {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.mobile-menu {
+    @include width-height(100vw,100vh);
+    background: rgb(0, 0, 0,0.5);
+    position: fixed;
+    @include flex-row-center-center();
+    justify-content: flex-start;
+    align-items: flex-start;
+    // top: 4rem;
+    top: 0;
+    left: 0;
+    z-index: 90;
+
+    .mobile-menu_list {
+        margin: 0;
+        background: rgba(255, 255, 255, 0.904);
+        list-style: none;
+        max-width: 60%;
+        min-width: 60%;
+        @include width-height(null);
+        padding: 0;
+        position: relative;
+        @include flex-column-center-center(2rem);
+        justify-content: flex-start;
+        animation: show-menu 300ms 1 backwards;
+
+        .dropdown-close {
+            position: absolute;
+            top: 1rem;
+            // left: 0;
+            right: 1rem;
+            @include width-height(1.5rem,1.5rem);
+            padding: 0;
+            transform: rotateZ(90deg);
+
+            img {
+                @include width-height();
+                // position: inherit;
+            }
+        }
+
+        li {
+            @include width-height(4rem,4rem);
+        }
+     
+    }
+
+    .blurr {
+        min-width: 40%;
+        min-height: 100%;
+    }
+
+}
+
+
+
+@keyframes wiggle {
+    0% {
+        // transform: ;
+        transform: translateY(-0.5rem) rotateZ(0deg);
+    }
+
+    50% {
+        transform: translateY(-0.5rem) rotateZ(-10deg);
+    }
+
+     100% {
+        transform: translateY(-0.5rem) rotateZ(10deg);
+     }
+}
+
+@keyframes show-menu {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+
+@keyframes hide-menu {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 420px) {
+    
+    ul {
+        .icon_image-container {
+            img:hover {
+                animation: none;
+            }
+        }
+    } 
+        
+}
+

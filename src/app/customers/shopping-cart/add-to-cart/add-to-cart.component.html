@@ -1,0 +1,10 @@
+<div class="page-container">
+    <div class="cart_form">
+        <div class="label_input">
+            <label for="item-count" class="otp_form-label">Enter The Number Of Items To Be Added To the Cart!</label>
+            <input type="number" id="item-count" [(ngModel)]='cartCount' (keyup.enter)="onAddToCart()">
+        </div>
+        <button type="submit" [disabled]='!(cartCount > 0)'(click)='onAddToCart()' class="button">addToCart</button>
+    </div>
+    
+</div>

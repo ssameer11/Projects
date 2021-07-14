@@ -1,0 +1,86 @@
+<nav *ngIf="!isMobile">
+    <ul>
+        <li>
+            <div [ngClass]= "{'header-active': currentActive === actives.home}" class="icon_image-container"  role="button" (click)='onSellerOrCustomer(false)'>
+                <img src="../../assets/images/homeIcon.png" alt="">
+            </div>
+        </li>
+        <li>
+            <div [ngClass]= "{'header-active': currentActive === actives.shoppingCart}" class="icon_image-container" (click)='onCart()'>
+                <img src="../../assets/images/shoppingCartIcon.png" alt="">
+            </div>
+        </li>
+        <li>
+            <div [ngClass]= "{'header-active': currentActive === actives.seller}" class="icon_image-container" role="button" (click)='onSellerOrCustomer(true)'>
+                <img src="../../assets/images/sellerIcon.png" alt="">
+            </div>
+        </li>
+        <li *ngIf='isLoggedIn'>
+            <!-- <button style="cursor: pointer;" type="button" *ngIf='isLoggedIn' (click)='onLogout()'>Logout</button> -->
+            <div class="icon_image-container"  type="button" (click)='onLogout()'>
+                <img src="../../assets/images/logoutIcon.png" alt="">
+            </div>
+        </li>
+    </ul>
+    
+    <div class="filters">
+        <select name="category" id="category" [(ngModel)]='categoryValue' (change)='onFilter()' class="search_category">
+            <option [value]=[categories[0]]  >{{categories[0]}}</option>
+            <option *ngFor='let category of categories | slice: 1; let i = index' [value]=[category]>{{category}}</option>
+        </select>
+        <input type="search" placeholder="Search By Title!" (keyup.enter)='onFilter()' [(ngModel)]='searchStringValue' (ngModelChange)='clearFilter()' class="search_input">    
+    </div>
+</nav>
+
+
+<nav *ngIf="isMobile" class="mobile-nav">
+    <div class="filters">
+        <select name="category" id="category" [(ngModel)]='categoryValue' (change)='onFilter()' class="search_category">
+            <option [value]=[categories[0]]  >{{categories[0]}}</option>
+            <option *ngFor='let category of categories | slice: 1; let i = index' [value]=[category]>{{category}}</option>
+        </select>
+        <input type="search" placeholder="Search By Title from {{fromSeller? 'Sellers': 'Home'}}!" (keyup.enter)='onFilter()' [(ngModel)]='searchStringValue' (ngModelChange)='clearFilter()' class="search_input">    
+    </div>
+    <ul class="mobile-nave_list">
+        <li>
+            <div [ngClass]= "{'header-active': currentActive === actives.home}" class="icon_image-container"  role="button" (click)='onSellerOrCustomer(false)'>
+                <img src="../../assets/images/homeIcon.png" alt="">
+            </div>
+        </li>
+        <li>
+            <div [ngClass]= "{'header-active': currentActive !== actives.home}" class="icon_image-container" (click)='onShowMobileMenu()'>
+                <img src="../../assets/images/dropDownIcon.png" alt="">
+            </div>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="mobile-menu" *ngIf="isMobile && showMenu">
+    <ul class="mobile-menu_list" #mobileMenu>
+        <li>
+            <div  class="icon_image-container dropdown-close" (click)='onHideMobileMenu(mobileMenu)'>
+                <img src="../../assets/images/dropDownCloseIcon.png" alt="">
+            </div>
+        </li>
+        <li>
+            <div [ngClass]= "{'header-active': currentActive === actives.shoppingCart}" class="icon_image-container" (click)='onCart()'>
+                <img src="../../assets/images/shoppingCartIcon.png" alt="">
+            </div>
+        </li>
+        <li>
+            <div [ngClass]= "{'header-active': currentActive === actives.seller}" class="icon_image-container" role="button" (click)='onSellerOrCustomer(true)'>
+                <img src="../../assets/images/sellerIcon.png" alt="">
+            </div>
+        </li>
+        <li *ngIf='isLoggedIn'>
+            <!-- <button style="cursor: pointer;" type="button" *ngIf='isLoggedIn' (click)='onLogout()'>Logout</button> -->
+            <div class="icon_image-container"  type="button" (click)='onLogout()'>
+                <img src="../../assets/images/logoutIcon.png" alt="">
+            </div>
+        </li>
+    </ul>
+
+    <div (click)='onHideMobileMenu(mobileMenu)' class="blurr">
+    </div>
+</div>

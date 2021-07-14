@@ -1,0 +1,8 @@
+@use '../../../styles/mixins' as *;
+
+.error-container {
+    @include width-height(100%,null);
+    @include flex-row-center-center();
+    align-items: flex-start;
+    position: absolute;
+}

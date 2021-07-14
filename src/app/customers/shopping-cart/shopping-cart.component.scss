@@ -1,0 +1,162 @@
+@use '../../../styles/mixins' as *;
+
+.cart_items {
+    @include flex-webkit();
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+    // gap: 2rem;
+    .cart_item {
+        @include flex-row-center-center();
+        justify-content: flex-start;
+        margin: 0 1rem;
+        margin-top: 2rem;
+        padding: 0.7rem;
+        border-radius: 30px;
+        background: rgb(0, 0, 0,0.1);
+    
+        .clickable_area {
+            @include flex-row-center-center();
+            justify-content: flex-start;
+    
+                .cart_item_image-container {
+                    // min-width: 20vw;
+                    max-width: 20vw;
+                    min-width: 20vw;
+                    // width: 20vw;
+                    @include width-height(null,20vh);
+
+            
+                    img {
+                        @include width-height();
+                    }
+                }
+
+                .cart_item-title {
+                    margin: 0 1rem;
+                    font-size: 1.4rem;
+                    text-align: left;
+                    max-height: 3rem;
+                    overflow: hidden;
+                }
+        }
+    
+        .delete_and_input {
+            margin-left: auto;
+            @include flex-row-center-center(1rem);
+            justify-content: flex-start;
+
+            .button {
+                width: auto;
+                padding: null 0.4rem;
+                min-width: 5rem;
+                // height: 2rem
+            }
+
+            .remove-button {
+                @include width-height(2rem,2rem);
+                svg {
+                    @include width-height();
+                }
+            }
+
+            input {
+                // margin-left: auto;
+                // width: 3.5rem;
+                // height: 2.5rem;
+                @include width-height(3.5rem,2.5rem);
+                text-align: center;
+            }
+        }
+    }
+}
+
+.buy_all-button {
+    margin: 0 0 2rem 4rem;
+    min-width: 9rem;
+}
+
+.remove-button:hover {
+    background: rgb(255, 99, 99);
+}
+
+.animate-rotate {
+    animation: rotate 600ms 2 forwards ease-out;
+    // , move-right 600ms 1 forwards ease-out;
+}
+
+.animate-move {
+    animation: move-right 600ms 1 forwards ease-out;
+}
+
+
+@media (max-width: 420px) {
+    .buy_all-button {
+        margin: 0 0 1rem 2rem;
+        min-width: 7rem;
+    }
+    .cart_items {
+
+        .cart_item {
+            flex-direction: column; 
+            align-items: flex-start;
+
+            .clickable_area {
+
+                .cart_item-title {
+                    font-size: 1.2rem;
+                    max-height: 2.5rem;
+                }
+            }
+        }
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    // 30% {
+    //     transform: rotateX(90deg);
+    // }
+
+    // 60% {
+    //     transform: rotateX(180deg);
+    // }
+
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+@keyframes move-right {
+
+    0% {
+        opacity: 1;
+        transform: translateX(0rem) 
+    }
+
+    // 20% {
+    //     transform: translateX(10rem) 
+    // }
+
+    // 40% {
+    //     transform: translateX(20rem) 
+    // }
+
+    60% {
+        opacity: 0.5;
+        transform: translateX(30rem) 
+    }
+
+    // 80% {
+    //     transform: translateX(40rem) 
+    // }
+
+    100% {
+        opacity: 0.2;
+        transform: translateX(80rem) 
+    }
+}
+

@@ -1,0 +1,19 @@
+<div class="page_container">
+    <div class="outfit_list-container">
+        <div *ngFor="let outfit of outfits; let id = index" class="outfit_list-item" [ngClass]="{'margin_top': !isMobile ? id>=4 : id>=1}">
+            <app-outfit-item 
+            [outfitIdx]='id' [fromSeller]='fromSeller'>
+            </app-outfit-item>
+        </div>
+    </div>
+    
+    <div class="navigation_buttons">
+        <button type="button" (click)='onFirstPage()' class="button number-button"  [ngClass]="{'button-active': currentPage === 1 }">1</button>
+        <button type="button" *ngIf='currentPage > 2' class="button" (click)='onPreveousPage()'>Prev</button>
+        <button type="button" *ngIf='currentPage > 1' (click)='onCurrentPage()' class="button button-active number-button">{{currentPage}}</button>
+        <button type="button" *ngIf='lastPage > currentPage' class="button" (click)='onNextPage()'>Next</button>
+    </div>
+    <div class="create_post_button-container">
+        <button *ngIf='fromSeller' (click)="onCreateOutfit()" class="button create_post_button">Create Post</button>
+    </div>
+</div>

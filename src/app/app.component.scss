@@ -1,0 +1,68 @@
+@use '../styles/mixins' as *;
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+.app_component-container {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 4rem auto fit-content(8rem);
+    grid-template-areas: "header"
+                         "main"
+                         "footer";
+    // grid-template-columns: 100vw;
+    row-gap: 2.5rem;
+    @include width-height(100vw,auto);
+    // height: 100vh;
+
+    max-width: 100%;
+    padding-top: 0;
+    background: cornflowerblue;
+    // background: rgb(160, 174, 255);
+}
+
+.header_component {
+   @include width-height();
+    grid-area: header;
+}
+
+
+.router_outlet {
+    grid-area: main;
+}
+
+.footer_component {
+    background: black;
+    color: white;
+   @include width-height();
+    grid-area: footer;
+}
+
+input {
+    font-size: 1.1rem;
+    // padding: 0.1rem;
+    padding-left: 1rem;
+    padding-right: 0.6rem;
+    color: red;
+}
+
+// .spinner-container,
+// .error_message-container {
+//     position: fixed;
+//     top: 6rem;
+//     // left: auto;
+// }
+
+
+
+.test {
+    background: black;
+}
+
+
+@media (max-width: 420px) {
+    .app_component-container {
+        grid-template-rows: 8rem auto fit-content(8rem);
+    }
+}

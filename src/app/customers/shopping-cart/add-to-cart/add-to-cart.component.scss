@@ -1,0 +1,38 @@
+
+@use '../../../../styles/mixins' as *;
+
+.page-container {
+    @include width-height(100%,80vh);
+    @include flex-row-center-center();
+
+
+    .cart_form {
+        @include width-height(100%,null);
+        @include flex-column-center-center(2rem);
+
+        .label_input {
+            @include flex-column-center-center(2rem);
+            @include width-height(100%,null);
+            text-align: center;
+            .otp_form-label {
+                font-size: 1.5rem;
+                font-weight: 2;
+            }
+    
+            #item-count {
+                min-width: 30%;
+                @include width-height(null,2rem);
+            }
+        }
+
+        
+    }
+}
+
+.button {
+    padding: 10px;
+    @include width-height(null,2.5rem);
+    font-size: 1.1rem;
+    text-align: center;
+    vertical-align: middle;
+}

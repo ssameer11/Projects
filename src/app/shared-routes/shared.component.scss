@@ -1,0 +1,4 @@
+@use '../../styles/mixins' as *;
+.router_outlet_wrapper  {
+    @include width-height(100%,auto);
+}

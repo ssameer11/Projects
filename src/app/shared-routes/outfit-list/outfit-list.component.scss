@@ -1,0 +1,87 @@
+@use '../../../styles/mixins' as *;
+
+.page_container {    
+    @include flex-webkit(3rem);
+    flex-direction: column;
+    @include width-height(100%,110vh);
+
+    .outfit_list-container {
+        @include width-height(96%,90%);
+        margin: 0 2%;
+        @include flex-row-center-center();
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        
+    
+        .outfit_list-item {
+            @include width-height(21%,32%);
+        }
+
+    }
+
+    .navigation_buttons {
+        @include flex-row-center-center(3rem);
+    }
+}
+
+.number-button {
+    min-width: 3rem;
+    height: 2rem;
+    border-radius: 0;
+    padding: 0;
+}
+
+.create_post_button-container {
+    
+    @include flex-row-center-center();
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    .create_post_button {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
+
+.margin_top {
+    margin-top: 2rem;
+}
+
+
+
+.button-active {
+    background: rgb(251,174,210);
+}
+
+
+// for mobile 
+
+@media (max-width: 420px) {
+    .page_container {
+        @include width-height(null,auto);
+
+    .outfit_list-container {
+        
+        .outfit_list-item {
+            @include width-height(100%,40vh);
+        }
+    }
+
+    }
+}
+
+// for tablet 
+@media (max-height: 58rem) and (min-width: 400px){
+    .page_container {
+        @include width-height(null,170vh);
+        .outfit_list-container {
+            .outfit_list-item {
+                @include width-height(null,47vh);
+            }
+        }
+    }
+}
+
+

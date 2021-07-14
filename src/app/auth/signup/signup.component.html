@@ -1,0 +1,20 @@
+<div class="page-container">
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" class="signup_form">
+        <div *ngIf="!isLoginMode" class="label_input">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" ngModel required >
+        </div>
+        <div class="label_input">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" ngModel required email>
+        </div>
+        <div class="label_input">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" ngModel required>
+        </div>
+        <div class="action_buttons">
+            <button type = "submit" class="button">{{isLoginMode ? 'Login' : 'Signup'}}</button>
+            <button type = "button" (click) = "onSwitchMode($event)" class="button switch_mode-button">Switch to {{isLoginMode ? 'Signup' : 'Login'}}</button>
+        </div>
+    </form>
+</div>

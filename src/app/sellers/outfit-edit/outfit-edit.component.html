@@ -1,0 +1,66 @@
+<div class="page-container">
+    <form [formGroup]='outfitForm' (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div class="label_input">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title">
+        </div>
+        <div class="label_input">
+            <label for="image">Select Image</label>
+            <input type="file" id="image" accept="image/jpg, image/jpeg, image/png, image/gif" formControlName="image" (change)="onImageChange($event)">
+        </div>
+        <div *ngIf="selectedFilePath" class="preview_image-container">
+            <img [src]="selectedFilePath" class="preview_image">
+        </div>
+        <div class="label_input">
+            <label for="price">Price</label>
+            <input type="number" id="price" formControlName="price">
+        </div>
+        <div class="label_input">
+            <label for="stockCount">StockCount</label>
+            <input type="number" id='stockCount' formControlName="stockCount">
+        </div>
+        <div class="description-label_text_area label_input">
+            <label for="description">Description</label>
+            <textarea id="description" rows="6" formControlName="description"></textarea>
+        </div>
+        <div class="label_input">
+            <label for="rating">Rating in Start</label>
+            <input type="number" min="1" max="5" id="rating" formControlName="rating">
+        </div>
+        <div class="label_input">
+            <label for="category">Select Category</label>
+            <select name="category" id="category" formControlName="category">
+                <option [value]=[categories[0]] class="option">{{categories[0]}}</option>
+                <option *ngFor='let category of categories | slice: 1; let i = index' [value]=[category] class="option">{{category}}</option>
+            </select>
+        </div>
+        <div class="instructions_label" *ngIf='controls.length > 0  && !isMobile'>
+            <p class="instruction_name-label">Instruction Name</p>
+            <p class="instruction_value-label">Instruction Value</p>
+        </div>
+        <div formArrayName="instructions" class="instruction_controlls-container" *ngIf="!isMobile">
+            <div *ngFor="let control of controls; index as i" [formGroupName]="i" class="instruction_controlls">
+                    <input type="text" formControlName = "name">
+                    <input type="text" formControlName = "value">
+                    <button type="button" class="button remove_instruction-button" (click)="onRemoveInstruction(i)">X</button>
+            </div>
+        </div>
+        <div formArrayName="instructions" class="instruction_controlls-container" *ngIf="isMobile">
+            <div *ngFor="let control of controls; index as i" [formGroupName]="i" class="instruction_controlls">
+                    <div class="label_input instruction_name-label-input">
+                        <p>Instruction Name</p>
+                        <input type="text" formControlName = "name">
+                    </div>
+                    <div class="label_input instruction_value-label-input">
+                        <p>Instruction Value</p>
+                        <input type="text" formControlName = "value">
+                    </div>
+                    <button type="button" (click)="onRemoveInstruction(i)">X</button>
+            </div>
+        </div>
+        <div>
+            <button type="button" (click)="onAddInstruction()" class="button add_instructions-button">Add Instruction</button>
+        </div>
+        <button type="submit" class="button submit-button">Submit</button>
+    </form>
+</div>

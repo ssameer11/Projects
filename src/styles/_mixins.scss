@@ -1,0 +1,51 @@
+
+@mixin input {
+    height: 1.5rem;
+    font-size: 1.1rem;
+    // padding: 0.1rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
+
+@mixin flex-webkit($gap: null) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    @if $gap {
+        gap: $gap
+    }
+}
+
+@mixin flex-center-center {
+    @include flex-webkit();
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-column-center-center($gap: null) {
+    @include flex-center-center();
+    flex-direction: column;
+    @if $gap {
+        gap: $gap
+    }
+}
+
+@mixin flex-row-center-center($gap: null) {
+    @include flex-center-center();
+    flex-direction: row;
+    @if $gap {
+        gap: $gap
+    }
+}
+
+
+@mixin  width-height($width: 100%,$height: 100%) {
+    @if $width or $width == 0 {
+        width: $width;
+    }
+
+    @if $height or $height == 0 {
+        height: $height;
+    }
+}

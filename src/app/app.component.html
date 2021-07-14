@@ -1,0 +1,15 @@
+<div class="app_component-container" (click)='onClick()'>
+    <app-header class="header_component"></app-header>
+    <div class="router_outlet">
+        <div class="spinner-container" *ngIf='isLoading'>
+            <app-spinner></app-spinner>
+        </div>
+        <div class="error_message-container" *ngIf='errorMessage'>
+            <app-error [errorMessage] = 'errorMessage'></app-error>
+        </div> 
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <app-footer class="footer_component"></app-footer>
+</div>

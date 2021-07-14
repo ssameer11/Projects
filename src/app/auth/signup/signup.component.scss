@@ -1,0 +1,69 @@
+@use '../../../styles/mixins' as *;
+
+
+.page-container {
+    @include width-height(100%,80vh);
+    @include flex-row-center-center();
+    align-items: flex-start;
+    .signup_form {
+        @include width-height(60%,100%);
+        @include flex-column-center-center(2rem);
+
+        .label_input { 
+            @include width-height(100%,null);
+            @include flex-row-center-center();
+
+            label {
+                font-size: 1.3rem;
+                font-weight: bold;
+                min-width: 20%;
+            }
+
+            input {
+                // min-width: 60%;
+                @include input;
+                width: 60%;
+                // height: 1.8rem;
+            }
+        }
+
+        .action_buttons {
+            @include flex-row-center-center(3rem);
+            align-items: flex-start;
+
+            // .button {
+            //     // padding-left: 20px;
+            //     // padding-right: 20px;
+            //     // width: auto;
+            // }
+        }
+    }
+}
+
+
+@media (max-width: 420px) {
+    .page-container {
+        .signup_form {
+            min-width: 100%;
+            max-width: 100%;
+            .label_input {
+                flex-direction: column;
+                gap: 0.2rem;
+                min-width: 100%;
+                max-width: 100%;
+                input {
+                    min-width: 70%;
+                }
+
+                label {
+                    @include width-height(auto,null);
+                    margin-right: auto;
+                    margin-left: 15%;
+                    margin-bottom: 0.5rem;
+                    font-weight: bold;
+                }
+            }
+
+        }
+    }
+}

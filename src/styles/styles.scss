@@ -1,0 +1,33 @@
+@use '../styles/mixins' as *;
+
+/* You can add global styles to this file, and also import other style files */
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Source+Sans+Pro&display=swap');
+html {
+    margin: 0;
+    padding: 0;
+   @include width-height();
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   @include width-height();
+}
+
+.button {
+    font-size: 1.1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    min-width: 7rem;
+    @include width-height(null,2.5rem);   
+    background: #73C2F8;
+    border-radius: 1.9rem;
+    vertical-align: middle;
+}
+
+.button:hover {
+    background: rgb(0, 0, 0,0.1);
+    color: white;
+    border: 2px solid white;
+}

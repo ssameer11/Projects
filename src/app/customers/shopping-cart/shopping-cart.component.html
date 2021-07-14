@@ -1,0 +1,22 @@
+<button class="button buy_all-button" *ngIf="cart !== null && cart.length !== 0" (click)="onBuyAll()">Buy All!</button>
+<div class="cart_items">
+    <h1 *ngIf='cart !== null && cart.length === 0'>Your Cart Is Empty! Let's Shop</h1>
+    <div *ngFor='let item of cart;let i = index' #theParent>
+        <div *ngIf="!removedItemsData[item._id]" class="cart_item" [ngStyle]="{'margin-top': i == 0 ? '0' : null}" #theItem>
+            <div (click)='onClick(item.outfit._id)' class="clickable_area">
+                <div class="cart_item_image-container">
+                    <img [src]=[item.outfit.imageUrl] alt="">
+                </div>
+                <h1 class="cart_item-title">{{item.outfit.title}}</h1>
+            </div>
+            <div class="delete_and_input">
+                <button class="button" (click)="onBuyCartItem(item._id,i)">Buy !</button>
+                <div class="remove-button" (click)='onRemove(item._id,theItem,theParent)'> 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
+                </div>
+                <!-- <button type="button" class="button remove-button" (click)='onRemove(item._id)'>Remove!</button> -->
+                <input type="number" #updatedCount [value]=[item.count] min="0" (input)='onCountChange(item._id,+updatedCount.value,item.count)' >    
+            </div>
+        </div>
+    </div>
+</div>

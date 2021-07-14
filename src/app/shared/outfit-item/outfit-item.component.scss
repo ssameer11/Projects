@@ -1,0 +1,126 @@
+@use '../../../styles/mixins' as *;
+
+.page-container {
+   @include width-height();
+    perspective: 100px;
+}
+.outfit_item {
+    @include flex-column-center-center(2%);
+    justify-content: flex-start;
+    @include width-height(_,92%);
+    padding-top: 4%;
+    padding-bottom: 4%;
+    background: rgba(127, 243, 218, 0.2);
+    border-radius: 20%;
+
+    .title {
+        min-height: 20%;
+        max-height: 20%;
+        max-width: 90%;
+        padding-left: 5%;
+        padding-right: 5%;
+        overflow: hidden;
+        text-align: center;
+        // vertical-align: middle;
+        @include flex-column-center-center();
+        h1 {
+            max-width: 100%;
+            @include width-height(null,2.6rem);
+            // margin: 0;
+            font-size: 1.3rem;
+        }
+    }
+
+
+    .outfit_item-image {
+        @include width-height(80%,null);
+        min-height: 50%;
+        max-height: 50%;
+
+        img {
+            @include width-height();
+        }
+    }
+
+    .stars_and_price {
+        @include width-height(100%,30%);
+        @include flex-column-center-center();
+        justify-content: flex-start;
+
+        
+        .price {
+            min-height: 35%;
+            @include width-height(100%,null);
+            text-align: center;
+            padding: 3%;
+            padding-bottom: 1%;
+            font-size: 1.5rem;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            @include flex-row-center-center();
+            align-items: flex-start;
+            p {
+                margin: 0 ;
+                max-width: 50%;
+                @include width-height(null);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            img {
+                // width: 50%;
+                @include width-height(2rem,100%);
+            }
+        }
+
+        .stars {
+            @include width-height(80%,70%);
+            @include flex-row-center-center();
+            align-items: flex-start;
+            // background: black;
+
+            img {
+                @include width-height(12%,75%);
+                vertical-align: top;
+                // margin-bottom: 10%;
+            }
+        }
+    }
+}
+
+
+
+.outfit_item-animate {
+    animation: move-back 900ms 1 backwards ease-out;
+}
+
+@keyframes move-back {
+    
+    0%{
+        transform: translateZ(-0rem);
+    }
+
+    // 10% {
+    //     // transform: translateX(10rem);
+    //     transform: translateZ(-2rem);
+    // }
+
+    // 30% {
+    //     transform: translateZ(-8rem);
+    // }
+
+    // 60% {
+    //     transform: translateZ(-15rem);
+    // }
+
+    // 75% {
+    //     transform: translateZ(-25rem);
+    // }
+
+    100% {
+        transform: translateZ(-40rem);
+    }
+
+}

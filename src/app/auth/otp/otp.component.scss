@@ -1,0 +1,37 @@
+@use '../../../styles/mixins' as *;
+
+.page-container {
+    // width: 100%;
+    // height: 80vh;
+    @include width-height(100%,80vh);
+    @include flex-row-center-center();
+
+    .otp_form {
+        @include width-height(100%,null);
+        @include flex-column-center-center(2rem);
+
+        .label_input {
+            @include flex-column-center-center(2rem);
+            @include width-height(100%,null);
+            .otp_form-label {
+                font-size: 1.5rem;
+                font-weight: 2;
+            }
+    
+            #otp {
+                min-width: 30%;
+                @include width-height(null,2rem);
+            }
+        }
+
+        
+    }
+}
+
+// .button {
+//     padding: 10px;
+//     height: 2.5rem;
+//     font-size: 1.1rem;
+//     text-align: center;
+//     vertical-align: middle;
+// }
