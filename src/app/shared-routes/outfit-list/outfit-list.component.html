@@ -9,9 +9,9 @@
     
     <div class="navigation_buttons">
         <button type="button" (click)='onFirstPage()' class="button number-button"  [ngClass]="{'button-active': currentPage === 1 }">1</button>
-        <button type="button" *ngIf='currentPage > 2' class="button" (click)='onPreveousPage()'>Prev</button>
+        <button type="button" *ngIf='currentPage > 2' class="button" [ngClass]="{'number-button': isMobile}" (click)='onPreveousPage()'>Prev</button>
         <button type="button" *ngIf='currentPage > 1' (click)='onCurrentPage()' class="button button-active number-button">{{currentPage}}</button>
-        <button type="button" *ngIf='lastPage > currentPage' class="button" (click)='onNextPage()'>Next</button>
+        <button type="button" *ngIf='lastPage > currentPage' class="button" [ngClass]="{'number-button': isMobile}" (click)='onNextPage()'>Next</button>
     </div>
     <div class="create_post_button-container">
         <button *ngIf='fromSeller' (click)="onCreateOutfit()" class="button create_post_button">Create Post</button>
