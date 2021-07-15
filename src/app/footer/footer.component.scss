@@ -5,10 +5,15 @@
     @include flex-row-center-center();
     align-items: flex-start;
 
-    div {
+    a {
         margin: 2rem auto;
-        span {
-            @include width-height();
+        text-decoration: none;
+        color: white;
+        @include flex-row-center-center();
+        gap: 0.1rem;
+        img {
+            width: 1rem;
+            height: 1rem;
         }
     }
 }
