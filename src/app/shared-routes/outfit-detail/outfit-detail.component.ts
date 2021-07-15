@@ -2,10 +2,12 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { map, switchMap } from "rxjs/operators";
+import { of } from "rxjs";
+import { catchError, map, switchMap } from "rxjs/operators";
 import { BACKEND_URL } from "src/app/auth/api_keys";
 import { SellersService } from "src/app/sellers/sellers.service";
 import { Outfit } from "src/app/shared/outfit.modle";
+import { AddErrorMessage } from "src/app/shared/store/shared.actions";
 import { AppState } from "src/app/store/app.reducer";
 
 @Component({
@@ -80,7 +82,12 @@ export class OutfitDetailComponent implements OnInit{
           locale: 'auto',
           currency: 'INR',
           token: (stripeToken: any) => {
-            this.http.post(`${BACKEND_URL}/sellers/payment/${this.selectedOutfit._id}`,{token: stripeToken,amount: amount}).subscribe(resData => {
+            this.http.post(`${BACKEND_URL}/sellers/payment/${this.selectedOutfit._id}`,{token: stripeToken,amount: amount}).pipe(
+              catchError(err => {
+                this.store.dispatch(AddErrorMessage({payload: {errorMessage: err.error.message}}))
+                return of();
+              })
+            ).subscribe(resData => {
             })
           }
         });

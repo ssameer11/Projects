@@ -2,8 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
+import { of } from "rxjs";
+import { catchError } from "rxjs/operators";
 import { BACKEND_URL } from "src/app/auth/api_keys";
 import { Outfit } from "src/app/shared/outfit.modle";
+import { AddErrorMessage } from "src/app/shared/store/shared.actions";
 import { AppState } from "src/app/store/app.reducer";
 import { CustomersService } from "../customers.service";
 import { FetchCart } from "../store/customers.actions";
@@ -107,18 +110,27 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
    
 
     checkout(data: {amount: number,outfitId?: string,count?: number,cartItemId?: string}) {
-        // const amount = this.selectedOutfit.price;
         const strikeCheckout = (<any>window).StripeCheckout.configure({
           key: 'pk_test_51HuEHPA0aJg8piPjouQGFtRpE9LFjTi4h4ZGKUE7U7lcy8rC3jcfIkfW4kzHjgHYqMb7lBzHNbF4PblDQQQGiK2a00DDIF6z62',
           locale: 'auto',
           currency: 'INR',
           token: (stripeToken: any) => {
             if(data.cartItemId) {
-                this.http.post(`${BACKEND_URL}/sellers/payment/${data.outfitId}`,{token: stripeToken,amount: data.amount,count: data.count,cartItemId: data.cartItemId}).subscribe(resData => {
+                this.http.post(`${BACKEND_URL}/sellers/payment/${data.outfitId}`,{token: stripeToken,amount: data.amount,count: data.count,cartItemId: data.cartItemId}).pipe(
+                    catchError(err => {
+                      this.store.dispatch(AddErrorMessage({payload: {errorMessage: err.error.message}}))
+                      return of();
+                    })
+                  ).subscribe(resData => {
                     this.store.dispatch(FetchCart());
                 })
             } else {
-                this.http.post(`${BACKEND_URL}/sellers/payment/cart`,{token: stripeToken,amount: data.amount}).subscribe(resData => {
+                this.http.post(`${BACKEND_URL}/sellers/payment/cart`,{token: stripeToken,amount: data.amount}).pipe(
+                    catchError(err => {
+                      this.store.dispatch(AddErrorMessage({payload: {errorMessage: err.error.message}}))
+                      return of();
+                    })
+                  ).subscribe(resData => {
                     this.store.dispatch(FetchCart());
                 })
             }

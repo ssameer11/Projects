@@ -1,8 +1,17 @@
 @use '../../../styles/mixins' as *;
 
-.error-container {
+.page-container {
     @include width-height(100%,null);
     @include flex-row-center-center();
     align-items: flex-start;
-    position: absolute;
+    .error-container {
+        // position: absolute;
+        max-width: 70%;
+        position: fixed;
+        background: rgb(255, 94, 94);
+        text-align: center;
+        z-index: 2;
+        padding: 2rem;
+        box-shadow: 3px 3px 7px 3px black;
+    }
 }
