@@ -22,6 +22,7 @@ import { CustomersEffects } from './customers/store/customers.effects';
 import { FormsModule } from '@angular/forms';
 import { SharedEffects } from './shared/store/shared.effects';
 import { environment } from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,13 @@ import { environment } from '../environments/environment';
     AppRoutes,
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([AuthEffects,SellersEffects,CustomersEffects,SharedEffects]),
-    CoreModule
+    CoreModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
